@@ -19,6 +19,11 @@ class Markov_elem:
         for nbr in self._following_nbr:
             self._following_proba.append(nbr / all)
 
+    def get_following_proba(self, word):
+        if word not in self._followings:
+            return 0
+        return self._following_proba[self._followings.index(word)]
+
     def pick_next(self):
         if not self._following_proba:
             raise Exception("Can't pick word without it's probability")
